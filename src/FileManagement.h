@@ -179,4 +179,43 @@ struct CSVDataBase {
 		// return data
 		return Passwords;
 	}
+
+	// project specific, taking all of the stored data and sending it to a single text file
+	void GeneratePasswordSummary() {
+		string OutDirectory;
+		for (int i = 0; i < AppDirectoryVector.size() - 1; i++) {
+			OutDirectory += AppDirectoryVector[i];
+		}
+		OutDirectory += "DataSummary.txt";
+
+		//get password data
+		vector<PasswordStruct> Passwords = GetPasswords();
+		
+		// if file already exists, delete
+		ifstream ifs;
+		ifs.open(OutDirectory);
+		if (ifs.is_open()) {
+			//delete file
+			DeleteFileA(OutDirectory.c_str());
+		}
+		ifs.close();
+
+		// create file and write to it
+		ofstream ofs;
+		ofs.open(OutDirectory.c_str(), ofstream::out | ofstream::trunc);
+		for (int i = 0; i < Passwords.size(); i++) {
+			ofs << "Password[" << i << "] - '" << Passwords[i].PasswordName << "'\n"; // write which password and endl
+			ofs << "   Email: '" << Passwords[i].EmailContent << "'\n"; // write email and endl
+			ofs << "   Password: '" << Passwords[i].PasswordContent << "'"; // write password
+			if (i < Passwords.size()-1) {
+				ofs << "\n\n\n"; // if it's not the last, endl 4x to make room for next password
+			}
+		}
+
+		//done writting
+		ofs.close();
+
+		//open in file explorer using system call (stinky i know)
+		system(OutDirectory.c_str());
+	}
 };

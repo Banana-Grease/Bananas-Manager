@@ -28,7 +28,9 @@ class DisplayClass {
     // this hashmap contains the 'ctrl + x' as the key, and the string as the printed option text
     void PrintKeyboardOptions(unordered_map<int, string> HashMap) {
         for (int i = 1; i < HashMap.size() + 1; i++)
-            cout << "   CTRL + " << i << " -> " << HashMap[i] << "\n\n";
+            if (HashMap[i] != "") {
+                cout << "   CTRL + " << i << " -> " << HashMap[i] << "\n\n";
+            }
     }
 
     // print the main screen
@@ -40,6 +42,11 @@ class DisplayClass {
         ControlMap.insert({ 2, "Create New Password" });
         ControlMap.insert({ 3, "Edit Existing Password" });
         ControlMap.insert({ 4, "Delete Existing Password" });
+        PrintKeyboardOptions(ControlMap);
+        
+        ControlMap.erase(ControlMap.begin(), ControlMap.end());
+        cout << "   ----------------------------------------------\n\n";
+        ControlMap.insert({ 5, "Export Password To One Text File" });
         PrintKeyboardOptions(ControlMap);
     }
 

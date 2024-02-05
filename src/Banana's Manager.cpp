@@ -19,10 +19,13 @@ int main()
 	// after directory verification, get passwords
 	vector<PasswordStruct> LoadedPasswords = PasswordDB.GetPasswords(); // this is where the passwords will be stored that are currently 'loaded'
 
+	// set console title
+	SetConsoleTitleA(AppTitle);
 
 	// debug code section here ---------------
 
 
+	//system("pause");
 
 	// end debug code section here -----------
 
@@ -49,6 +52,11 @@ int main()
 		if (Keyboard.PressingCTRLAnd(Keyboard.Four)) {
 			Screen.RefreshScreen(Screen.PasswordSelect, Screen.DeletePasswords, LoadedPasswords);
 			LoadedPasswords = PasswordDB.GetPasswords();
+		}
+
+		// Export Passwords (CTRL + 5)
+		if (Keyboard.PressingCTRLAnd(Keyboard.Five)) {
+			PasswordDB.GeneratePasswordSummary();
 		}
 
 		Screen.RefreshScreen(Screen.Main); // print main screen if needed / just came out of a Screen.Refresh cycle!
