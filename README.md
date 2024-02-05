@@ -1,6 +1,7 @@
 # Bananas-Manager
 A basic password manager to test my C++ skills after taking a long break from the language. I also created this out of my own desperation for a password manager
 
+## NOTE: I JUST DISCOVERED THAT UNDER NO CIRCUMSTANCE CAN SPACES " " BE USED, WORKING ON BUG FIX
 
 ## Feature List
 ### 1. View Saved Passwords
@@ -10,6 +11,8 @@ A basic password manager to test my C++ skills after taking a long break from th
 ### 3. Edit Existing Passwords
 
 ### 4. Delete Passwords
+
+### 5. Quick 'Export' to txt file
 
 
 ## Objectives For Next Release
